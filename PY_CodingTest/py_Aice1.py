@@ -63,3 +63,12 @@ print(t2)
 members = {'name':'장찬희', 'age':24,'email':'jang@python.com'}
 print(members)
 
+print(members.keys())
+print(members.values())
+print(members.items())
+print(members.get('name')) # key 값으로 value 얻기
+print('name' in members) # 'name'이라는 key값이 members에 있다면 True 없으면 F
+print('birth' in members)
+
+members.clear()
+print(members)

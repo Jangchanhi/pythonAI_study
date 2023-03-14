@@ -46,5 +46,20 @@ print(list2)
 list2.sort(reverse=True)
 print(list2)
 
+# w = [10,20,30,40,50,60,70,80,90,100]
+# w.pop(90)
+# print(w)
 
+# 튜플(Tuple) : 리스트와 거의 유사, 사용법도 동일 [] X -> () O
+t1 = ('banana', 'apple', 'kiwi')
+print(t1)
+
+t2 = 'banana', 'apple', 'kiwi'
+print(t2)
+# t1과 t2는 같다.
+# t2[0] = 'watermelon' # 튜플은 변환이 불가능 하기 때문에 에러 발생
+
+# 딕셔너리 : 키(key)와 값(value)을 쌍으로 갖는 자료형
+members = {'name':'장찬희', 'age':24,'email':'jang@python.com'}
+print(members)
 

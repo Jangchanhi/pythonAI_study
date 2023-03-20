@@ -6,8 +6,8 @@ data_input = np.load('data_input.npy')
 data_target = np.load('data_target.npy')
 kn = KNeighborsClassifier()
 #
-# print("입력 데이터의 개수 : " + data_input.size) 3600
-# print("타겟 데이터의 개수 : "+ data_target.size) 1800
+print("입력 데이터의 개수 : " + data_input.size) #3600
+print("타겟 데이터의 개수 : "+ data_target.size) #1800
 
 input_arr = np.array(data_input)
 target_arr = np.array(data_target)

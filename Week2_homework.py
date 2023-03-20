@@ -123,3 +123,18 @@ neighbors = get_neighbors(train_scaled, row0, 4)
 for neighbor in neighbors:
     print(neighbor)
 
+# 예측하는 함수 만들기
+def predict_classification(train, test_row, num_neighbors):
+    neighbors = get_neighbors(train, test_row, num_neighbors)
+    for neighbor in neighbors:
+        print(neighbor)
+    output_values = [row[-1] for row in neighbors]
+    prediction = max(set(output_values), key=output_values.count)
+    return prediction
+
+row0 = [3,3,0]
+prediction = predict_classification(train_scaled, row0, 3)
+print(' 기대 값 : %d, 실제 값 : %d' % (row0[-1], prediction))
+
+
+

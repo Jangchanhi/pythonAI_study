@@ -1,13 +1,23 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.cluster import KMeans
+from math import sqrt
+
+def euclidean_distance(row1, row2):
+    distance = 0.0
+    for i in range(len(row1)-1):
+        distance += (row1[i] - row2[i])**2
+    return sqrt(distance)
+
+
 
 data_input = np.load('data_input.npy')
 data_target = np.load('data_target.npy')
 kn = KNeighborsClassifier()
 #
-print("입력 데이터의 개수 : " + data_input.size) #3600
-print("타겟 데이터의 개수 : "+ data_target.size) #1800
+# print("입력 데이터의 개수 : " + data_input.size) #3600
+# print("타겟 데이터의 개수 : "+ data_target.size) #1800
 
 input_arr = np.array(data_input)
 target_arr = np.array(data_target)
@@ -90,4 +100,7 @@ plt.ylabel('weight')
 
 plt.show()
 
-
+row0 = [3,3]
+for row in train_scaled:
+    distance = euclidean_distance(row0, row)
+    print(distance)

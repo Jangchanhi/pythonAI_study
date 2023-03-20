@@ -4,6 +4,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.cluster import KMeans
 from math import sqrt
 
+# KNN 거리 구하는 공식 => 유클리드 거리 공식 사용
 def euclidean_distance(row1, row2):
     distance = 0.0
     for i in range(len(row1)-1):
@@ -104,3 +105,21 @@ row0 = [3,3]
 for row in train_scaled:
     distance = euclidean_distance(row0, row)
     print(distance)
+
+# 가장 근처에 있는 요소 뽑기
+# train 변수는 데이터 셋, row는 측정하는 좌표, neighbor 변수가 K
+def get_neighbors(train, test_row, num_neighbors):
+    distance = list()
+    for train_row in train:
+        dist = euclidean_distance(test_row, train_row)
+        distance.append((train_row, dist))
+    distance.sort(key=lambda tup: tup[1])
+    neighbors = list()
+    for i in range(num_neighbors):
+        neighbors.append(distance[i][0])
+    return neighbors
+
+neighbors = get_neighbors(train_scaled, row0, 4)
+for neighbor in neighbors:
+    print(neighbor)
+

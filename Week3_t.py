@@ -47,7 +47,9 @@ lr.fit(train_input, train_target)
 print(lr.predict([[50]]))
 print(lr.coef_, lr.intercept_)
 plt.scatter(train_input, train_target)
-#plt.plot([15, 50], [15*lr.coef_+lr.intercept_, 50*lr.coef_+lr.intercept_])
+
+# plt.plot([15, 50], [15*lr.coef_+lr.intercept_, 50*lr.coef_+lr.intercept_])
+
 plt.scatter(50, 1241.8, marker='^')
 plt.show()
 print(lr.score(train_input, train_target))
@@ -56,22 +58,17 @@ print(lr.score(test_input, test_target))
 train_poly = np.column_stack((train_input ** 2, train_input))
 test_poly = np.column_stack((test_input ** 2, test_input))
 
-#%%
 
 print(train_poly.shape, test_poly.shape)
 
-#%%
 
 lr = LinearRegression()
 lr.fit(train_poly, train_target)
 
 print(lr.predict([[50**2, 50]]))
 
-#%%
-
 print(lr.coef_, lr.intercept_)
 
-#%%
 
 # 구간별 직선을 그리기 위해 15에서 49까지 정수 배열을 만듭니다
 point = np.arange(15, 50)

@@ -1,3 +1,11 @@
+# 지도 학습 : 입력과 타깃을 전달하여 모델 훈련 -> 다음 새로운 데이터 예측하는데 활용 ex) k-최근접 이웃 = 지도 학습 알고리즘
+
+# 비지도 학습 : 타깃 데이터가 없다. 따라서 무엇을 예측하는 것이 아니라 입력 데이터에서 어떤 특징을 찾는데 주로 활용
+
+# 테스트 세트 : 전체 데이터에서 20~30% 를 테스트 세트로 사용하는경우가 많다. 데이터가 아주 크면 1%만 덜어내도 됨
+
+
+
 fish_length = [25.4, 26.3, 26.5, 29.0, 29.0, 29.7, 29.7, 30.0, 30.0, 30.7, 31.0, 31.0,
                 31.5, 32.0, 32.0, 32.0, 33.0, 33.0, 33.5, 33.5, 34.0, 34.0, 34.5, 35.0,
                 35.0, 35.0, 35.0, 36.0, 36.0, 37.0, 38.5, 38.5, 39.5, 41.0, 41.0, 9.8,
@@ -37,6 +45,39 @@ print(input_arr.shape)
 np.random.seed(42)
 index = np.arange(49)
 np.random.shuffle(index)
+
+print(index)
+print(input_arr[[1,3]])
+
+train_input = input_arr[index[:35]]
+train_target = target_arr[index[:35]]
+print(input_arr[13], train_input[0])
+
+test_input = input_arr[index[35:]]
+test_target = target_arr[index[35:]]
+
+import matplotlib.pyplot as plt
+
+plt.scatter(train_input[:, 0], train_input[:, 1])
+plt.scatter(test_input[:, 0], test_input[:, 1])
+plt.xlabel('length')
+plt.ylabel('weight')
+plt.show()
+
+
+# 두 번 째 머신러닝 프로그램
+
+
+kn.fit(train_input, train_target)
+kn.score(test_input, test_target)
+kn.predict(test_input)
+print(test_target)
+
+
+
+
+
+
 
 
 

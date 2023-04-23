@@ -35,8 +35,34 @@ kn = KNeighborsClassifier()
 kn.fit(train_input, train_target)
 kn.score(test_input, test_target)
 
+plt.scatter(train_input[:,0], train_input[:,1])
+plt.scatter(25,150, marker='^')
+plt.xlabel('length')
+plt.ylabel('weight')
+plt.show()
 
+distances, indexes = kn.kneighbors([[25, 150]])
+plt.scatter(train_input[:,0], train_input[:,1])
+plt.scatter(25, 150, marker='^')
+plt.scatter(train_input[indexes,0], train_input[indexes,1], marker='D')
+plt.xlabel('length')
+plt.ylabel('weight')
+plt.show()
 
+print(train_input[indexes])
+print(train_target[indexes])
+print(distances)
+
+plt.scatter(train_input[:,0], train_input[:,1])
+plt.scatter(25, 150, marker='^')
+plt.scatter(train_input[indexes,0], train_input[indexes,1], marker='D')
+plt.xlim((0, 1000))
+plt.xlabel('length')
+plt.ylabel('weight')
+plt.show()
+
+mean = np.mean(train_input, axis=0)
+std = np.std(train_input, axis=0)
 
 
 

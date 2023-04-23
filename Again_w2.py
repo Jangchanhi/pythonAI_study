@@ -63,9 +63,36 @@ plt.show()
 
 mean = np.mean(train_input, axis=0)
 std = np.std(train_input, axis=0)
+print("평균 ",mean, "표준편차", std)
+# 브로드캐스팅 : 넘파이 배열 사이에서 일어남
+train_scaled = (train_input - mean) / std
 
+# 전처리 데이터로 모델 훈련하기
+plt.scatter(train_scaled[:,0], train_scaled[:,1])
+plt.scatter(25, 150, marker='^')
+plt.xlabel('length')
+plt.ylabel('weight')
+plt.show()
 
+new = ([25, 150] - mean) / std
+plt.scatter(train_scaled[:,0], train_scaled[:,1])
+plt.scatter(new[0], new[1], marker='^')
+plt.xlabel('length')
+plt.ylabel('weight')
+plt.show()
 
+kn.fit(train_scaled, train_target)
+test_scaled = (test_input - mean) / std
+kn.score(test_scaled, test_target)
+print(kn.predict([new]))
+
+distances, indexes = kn.kneighbors([new])
+plt.scatter(train_scaled[:,0], train_scaled[:,1])
+plt.scatter(new[0], new[1], marker='^')
+plt.scatter(train_scaled[indexes, 0], train_scaled[indexes, 1], marker='D')
+plt.xlabel('length')
+plt.ylabel('weight')
+plt.show()
 
 
 

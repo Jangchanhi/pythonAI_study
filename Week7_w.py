@@ -31,3 +31,23 @@ model.add(keras.layers.Dense(10,activation='softmax'))
 #model.compile(loss='sparse_categorical_crossentropy', metrics='accuracy')
 
 #model.fit(train_scaled,train_target, epochs=5)
+
+
+
+model.compile(optimizer='sgd', loss='sparse_categorical_crossentropy', metrics='accuracy')
+sgd = keras.optimizers.SGD()
+model.compile(optimizer=sgd, loss='sparse_categorical_crossentropy', metrics='accuracy' )
+
+sgd = keras.optimizers.SGD(learning_rate=0.1)
+sgd = keras.optimizers.SGD(momentum=0.9,nesterov=True)
+
+model = keras.Sequential()
+model.add(keras.layers.Flatten(input_shape=(28,28)))
+model.add(keras.layers.Dense(100,activation='relu'))
+model.add(keras.layers.Dense(10,activation='softmax'))
+model.summary()
+
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics='accuracy')
+model.fit(train_scaled,train_target, epochs=5)
+model.evaluate(val_scaled,val_target)
+

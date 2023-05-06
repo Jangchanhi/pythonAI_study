@@ -29,5 +29,15 @@ proba = softmax(decision,axis=1)
 print(np.round(proba,decimals=3))
 
 
+#다중분류
+lr = LogisticRegression(C=20,max_iter=159)
+lr.fit(train_scaled,train_target)
+
+proba = lr.predict_proba(test_scaled)
+print(np.round(proba,decimals=3))
+print(lr.coef_.shape,lr.intercept_.shape)
+
+print(lr.score(train_scaled,train_target))
+print(lr.score(test_scaled,test_target))
 
 

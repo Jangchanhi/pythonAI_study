@@ -54,6 +54,22 @@ add_model.add(Dense(4, activation="relu"))
 add_model.add(Dense(4, activation="linear"))
 
 
+# 값을 예측하기 위한 loss 함수는 mse를 사용
+add_model.compile(loss="mse",optimizer=adam,metrics=["mae"])
+
+epochs = 15000
+add_history = add_model.fit(add_x, add_y, epochs = epochs)
+add_model.summary()
+
+data_test = [10,100,1000,10000,100000,10000000]
+for i in data_test:
+    idx = randint(1,1000)
+    test_x,test_y = add_test_data2(i,1000)
+    pred_add_y = add_model.predict(test_x)
+    print(r2_score(test_y, pred_add_y))
+    print(test_x[idx][0], test_x[idx][1])
+    print(add_model.predict(np.array([[test_x[idx]]])))
+    print(test_y[idx])
 
 
 

@@ -42,6 +42,17 @@ def add_test_data2(data_len,data_size):
     return x,y
 
 
+add_x, add_y = add_test_data(10000, 2000)
+print(add_x.shape, add_y.shape)
+print(add_x[0], add_y[0])
+
+adam = Adam(learnig_rate = 0.00001)
+
+add_model = Sequential()
+add_model.add(Dense(4, input_dim=2, activation="relu"))
+add_model.add(Dense(4, activation="relu"))
+add_model.add(Dense(4, activation="linear"))
+
 
 
 

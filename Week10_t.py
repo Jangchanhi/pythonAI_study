@@ -34,7 +34,23 @@ model.add(keras.layers.Dense(10,activation='softmax'))
 
 model.summary()
 
+keras.utils.plot_model(model, show_shapes=True)
 
+model.compile(optimizer='adam', loss='sparse_categorial_crossentropy', metrics='accuracy')
+checkpoint_cb = keras.callbacks.ModelCheckpoint('best-cnn-model.h5')
+early_stopping_cb = keras.callbacks.EarlyStopping(patience=2,restore_best_weights=True)
+history = model.fit(train_scaled, train_target, epochs=20,validation_data=(val_scaled, val_target),callbacks=[checkpoint_cb, early_stopping_cb])
+
+model.evaluate(val_scaled, val_target)
+
+plt.imshow(val_scaled[0].reshape(28, 28), cmap='gray_r')
+plt.show()
+preds = model.predict(val_scaled[0:1])
+print(preds)
+
+test_scaled = test_input.reshape(-1, 28, 28, 1) / 255.0
+
+model.evaluate(test_scaled, test_target)
 
 
 
